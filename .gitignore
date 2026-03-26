@@ -186,3 +186,5 @@ notebooks
 resources/checkpoint/
 examples
 outputs
+.DS_Store
+uv.lock
