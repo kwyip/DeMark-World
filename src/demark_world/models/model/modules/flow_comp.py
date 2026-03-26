@@ -3,7 +3,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from mmcv.cnn import ConvModule
-from mmcv.runner import load_checkpoint
+from mmengine.runner import load_checkpoint
+
 from demark_world.configs import SPYNET_CHECKPOINT_PATH, PHY_NET_CHECKPOINT_REMOTE_URL
 from demark_world.utils.download_utils import ensure_model_downloaded
 

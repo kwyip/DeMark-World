@@ -4,25 +4,14 @@ BasicVSR++: Improving Video Super-Resolution with Enhanced Propagation and Align
 
 import torch
 import torch.nn as nn
+from mmengine.model import constant_init
 
 try:
-    from mmcv.cnn import constant_init
     from mmcv.ops import ModulatedDeformConv2d, modulated_deform_conv2d
-except:
+except Exception as exc:
     from loguru import logger
 
-    logger.warning("mmcv is not available, using a fallback implementation")
-    import torch
-    import torch.nn as nn
-    import torch.nn.functional as F
-
-    # Fallback: constant_init function
-    def constant_init(module, val=0, bias=0):
-        """Initialize module parameters with constant values."""
-        if hasattr(module, "weight") and module.weight is not None:
-            nn.init.constant_(module.weight, val)
-        if hasattr(module, "bias") and module.bias is not None:
-            nn.init.constant_(module.bias, bias)
+    logger.warning(f"mmcv.ops is not available, using a fallback implementation: {exc}")
 
     def _pair(v):
         if isinstance(v, tuple):
